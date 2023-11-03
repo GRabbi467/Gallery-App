@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSortable } from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
+import './SortableItems.css';
 
 const SortableItems = (props) => {
-    console.log(props.id)
     const {
         attributes,
         listeners,
@@ -16,14 +16,12 @@ const SortableItems = (props) => {
         transform: CSS.Transform.toString(transform),
         transition
     }
-
+    
+    
     return (
-        <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <div className='images'>
-               <div> <img className='rounded-2xl' src={props.id} alt="" /></div>
-            </div>
-        </div>
-        
+        <div className='container' ref={setNodeRef} style={style} {...attributes} {...listeners}>
+                <img className='rounded-2xl' src={props.id} alt="" />
+        </div>  
     );
 };
 

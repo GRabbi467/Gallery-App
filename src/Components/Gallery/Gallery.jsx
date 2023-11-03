@@ -14,29 +14,32 @@ import img11 from '../../Assests/image-11.jpeg';
 import {
     DndContext,
     closestCenter
-  } from "@dnd-kit/core";
+} from "@dnd-kit/core";
+
 import {
     arrayMove,
     SortableContext,
     rectSwappingStrategy
-  } from "@dnd-kit/sortable";
+} from "@dnd-kit/sortable";
 import { LuImagePlus } from "react-icons/lu";
 import SortableItems from './SortableItems';
 
+
+
 const Gallery = () => {
   const [image,setImage] = useState([img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11])
-
+ 
   const handledragEnd = (e)=>{
-    console.log("DragEnd called");
+   // console.log("DragEnd called");
     const {active, over} = e;
-    console.log("ACTIVE: " + active.id);
-    console.log("OVER :" + over.id);
+   // console.log("ACTIVE: " + active.id);
+   // console.log("OVER :" + over.id);
 
     if(active.id !== over.id) {
       setImage((items) => {
         const activeIndex = items.indexOf(active.id);
         const overIndex = items.indexOf(over.id);
-        console.log(arrayMove(items, activeIndex, overIndex));
+       // console.log(arrayMove(items, activeIndex, overIndex));
         return arrayMove(items, activeIndex, overIndex);
       });
   }

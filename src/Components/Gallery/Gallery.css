@@ -1,0 +1,41 @@
+.gallery-container{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+ 
+}
+.images{
+  display: grid;
+  grid-template-columns: repeat(5,200px);
+  grid-template-rows: repeat(3,200px);
+  grid-gap: 5px;
+}
+
+.images img{
+  width: 200px;
+  cursor: move;
+}
+
+.images img:hover{
+  border: 2px solid gray;
+  border-radius: 20px;
+  opacity:0.5;
+}
+
+.addPhoto{
+  display: grid;
+  place-items: center;
+  width: 200px;
+  border: 1px dotted grey;
+  border-radius: 20px;
+  background: rgb(219, 214, 214);
+}
+
+.addPhoto p{
+  font-size: large;
+}
+
+.imgPlus{
+font-size: xx-large;
+margin: auto;
+}

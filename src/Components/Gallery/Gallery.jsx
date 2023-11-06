@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState } from 'react';
 import './Gallery.css';
 import img1 from '../../Assests/image-1.webp';
 import img2 from '../../Assests/image-2.webp';
@@ -28,7 +28,24 @@ import SortableItems from './SortableItems';
 
 const Gallery = () => {
   const [image,setImage] = useState([img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11])
+  const [selected ,setSeleted] = useState([]);
  
+  const onCheck =(e,id)=>{
+   if(e.target.checked){
+    e.target.classList.remove('invisible')
+    return setSeleted((prev)=> ([...prev,id]))
+   }else{
+    e.target.classList.add('invisible')
+    return setSeleted((prev)=> {return prev.filter((each)=>each !== id)})
+   }
+  }
+ 
+  const deleteHandle =()=>{
+   selected.forEach((each)=>{
+    setImage((prev)=> {return prev.filter((eac)=>eac !== each)})
+   })
+   setSeleted([])
+  }
   const handledragEnd = (e)=>{
    // console.log("DragEnd called");
     const {active, over} = e;
@@ -44,11 +61,19 @@ const Gallery = () => {
       });
   }
 }
+   
     
     return (
         <div className='gallery-container'>
             <h1 className='text-3xl font-bold text-blue-600 mb-4'>Drag &amp; drop Gallery</h1>
-            
+            <div className='h-7 w-full'>
+                {
+                    selected.length !==0 && <section className='flex justify-between items-center'>
+                        <p>Items Selected</p>
+                        <button onClick={deleteHandle}>Delete</button>
+                    </section>
+                }
+            </div>
             <DndContext
             collisionDetection={closestCenter}
             onDragEnd={handledragEnd}
@@ -59,7 +84,12 @@ const Gallery = () => {
                     strategy={rectSwappingStrategy}
                     >
                         {
-                            image.map(img=><SortableItems key={img} id={img}></SortableItems>)
+                            image.map(img=> <div className='cardWrapper relative'>
+                                <input
+                                checked={selected.includes(img)}
+                                 type="checkbox" onChange={(e)=>onCheck(e,img)}
+                                className={`checkBox absolute z-10 ${selected.includes(img) ? '': 'invisible'}`}  name="" id="" />
+                                <SortableItems key={img} id={img}  setSelected = {setSeleted}></SortableItems></div>)
                         }
                     </SortableContext>
                     <div className='addPhoto'>
@@ -72,3 +102,5 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
+

@@ -49,6 +49,26 @@
 font-size: xx-large;
 margin: auto;
 }
+.checkBox{
+  position: absolute;
+  left: 20px;
+  top:20px;
+  z-index:10;
+  
+
+}
+.invisible{
+  visibility: hidden;
+}
+input[type=checkbox]
+{
+-ms-transform: scale(2); 
+-moz-transform: scale(2); 
+-webkit-transform: scale(2); /* Safari and Chrome */
+transform: scale(2);
+padding: 10px;
+}
+
 
 @media only screen and (max-width: 768px) {
   .images{
@@ -71,5 +91,9 @@ margin: auto;
     width: 99%;
   }
 
+}
+
+.cardWrapper:hover>.invisible{
+visibility: visible;
 }
 

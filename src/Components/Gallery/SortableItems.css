@@ -1,18 +1,4 @@
 .img{
     border-radius: 20px;
 }
-.checkBox{
-    position: absolute;
-    left: 20px;
-    top:20px;
-    z-index:10;
 
-}
-input[type=checkbox]
-{
-  -ms-transform: scale(2); 
-  -moz-transform: scale(2); 
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  transform: scale(2);
-  padding: 10px;
-}

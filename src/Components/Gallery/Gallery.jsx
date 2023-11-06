@@ -21,15 +21,19 @@ import {
     SortableContext,
     rectSwappingStrategy
 } from "@dnd-kit/sortable";
-import { LuImagePlus } from "react-icons/lu";
+import { LuImagePlus} from "react-icons/lu";
+import {AiFillCheckSquare} from "react-icons/ai";
 import SortableItems from './SortableItems';
 
 
 
 const Gallery = () => {
-  const [image,setImage] = useState([img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11])
+    //Array of images
+  const [image,setImage] = useState([img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11]);
+  //delcared state to select chcecked images to delete
   const [selected ,setSeleted] = useState([]);
  
+  //function to select image files
   const onCheck =(e,id)=>{
    if(e.target.checked){
     e.target.classList.remove('invisible')
@@ -40,23 +44,21 @@ const Gallery = () => {
    }
   }
  
+  //function to delete images
   const deleteHandle =()=>{
    selected.forEach((each)=>{
     setImage((prev)=> {return prev.filter((eac)=>eac !== each)})
    })
-   setSeleted([])
+   setSeleted([]);
   }
+  //function to drag images
   const handledragEnd = (e)=>{
-   // console.log("DragEnd called");
     const {active, over} = e;
-   // console.log("ACTIVE: " + active.id);
-   // console.log("OVER :" + over.id);
 
     if(active.id !== over.id) {
       setImage((items) => {
         const activeIndex = items.indexOf(active.id);
         const overIndex = items.indexOf(over.id);
-       // console.log(arrayMove(items, activeIndex, overIndex));
         return arrayMove(items, activeIndex, overIndex);
       });
   }
@@ -65,12 +67,15 @@ const Gallery = () => {
     
     return (
         <div className='gallery-container'>
-            <h1 className='text-3xl font-bold text-blue-600 mb-4'>Drag &amp; drop Gallery</h1>
-            <div className='h-7 w-full'>
+            <h1>Drag &amp; Drop Image Gallery</h1>
+            <div className=' h-8 w-full'>
                 {
-                    selected.length !==0 && <section className='flex justify-between items-center'>
-                        <p>Items Selected</p>
-                        <button onClick={deleteHandle}>Delete</button>
+                    selected.length !==0 && <section className='flex justify-around items-center'>
+                       <div className='flex'>
+                        <AiFillCheckSquare className='mt-1 text-3xl text-blue-700'/>
+                        <p className='text-2xl font-bold'>{selected.length} File Selected</p>
+                       </div>
+                        <button className=' deleteBtn' onClick={deleteHandle}>Delete File</button>
                     </section>
                 }
             </div>

@@ -1,13 +1,30 @@
 .gallery-container{
   display: grid;
+  grid-gap: 20px;
   place-items: center;
   height: 100vh;
+}
+.gallery-container h1{
+  font-weight: bold;
+  font-size: x-large;
+  color: rgb(29, 29, 188);
+}
+.deleteBtn{
+  font-size: x-large;
+  font-weight: bold;
+  color: red;
+}
+.deleteBtn:hover{
+  color: rgb(117, 15, 15);
 }
 .images{
   display: grid;
   grid-template-columns: repeat(5,1fr);
   grid-template-rows: repeat(3,1fr);
   grid-gap: 5px;
+  border: 1px dotted gray;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .images img{
@@ -31,6 +48,9 @@
   opacity:0.5;
 }
 
+.cardWrapper:hover>.invisible{
+  visibility: visible;
+  }
 .addPhoto{
   display: grid;
   place-items: center;
@@ -93,7 +113,5 @@ padding: 10px;
 
 }
 
-.cardWrapper:hover>.invisible{
-visibility: visible;
-}
+
 
